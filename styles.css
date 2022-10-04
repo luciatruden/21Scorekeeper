@@ -1,0 +1,30 @@
+body {
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+    
+}
+
+#scoreKeeper {
+    background-color: aqua;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+
+
+
+#gameStatus {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#gameButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin-top: 50px;
+}
