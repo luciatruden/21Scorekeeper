@@ -30,3 +30,19 @@ body {
 
     margin-top: 50px;
 }
+
+.playerDiv {
+    background-color: antiquewhite;
+}
+
+.playerButton {
+    background-color: aliceblue;
+}
+
+.playerTotal {
+    font-size: 2rem;
+}
+
+.playerLimit {
+    font-size: 0.7rem;
+}
