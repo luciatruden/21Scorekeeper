@@ -3,6 +3,7 @@
 const players = [];
 let numOfPlayers = 2;
 let topScore = ["", 0];
+let previousPlayer;
 
 // const gameStatus = document.querySelector('#currentScore');
 const currentPlayerDiv = document.querySelector('#currentPlayer');
@@ -30,7 +31,7 @@ const createPlayers = function(num) {
         let newPlayer = { 
             name: `Player ${i}`,
             total: 0,
-            scores: 2, 
+            //scores: 2, 
             limit: 21
         }
         players.push(newPlayer);
@@ -73,12 +74,8 @@ const createPlayers = function(num) {
         })
 
     }
-
-    // console.log(`Number of players: ${numOfPlayers}`);
-    // console.log(players);
     
 }
-
 
 
 //Function to increase a player's score
@@ -86,15 +83,19 @@ const createPlayers = function(num) {
 //after that it's one point per score
 const addScore = function (player) { 
 
-    if (players[player].scores === 2){
+    //if (players[player].scores === 2){
+    if ( player !== previousPlayer) {
         players[player].total += 2;
-        players[player].scores = 1;
+        //players[player].scores = 1;
 
         //set the previous player's "scores" back to 2   
-        players[(player + (numOfPlayers -1))% numOfPlayers].scores = 2;
+        //players[(player + (numOfPlayers -1))% numOfPlayers].scores = 2;
 
         //change the current player label
         currentPlayerDiv.innerText = `Playing now: ${players[player].name}`;
+
+        //Update previousPlayer
+        previousPlayer = player;
 
     } else {
         players[player].total += 1;
@@ -118,25 +119,21 @@ const addScore = function (player) {
     }
 
     //Update top score if necessary
-    console.log(`Top Score before if statement: top scorer = Player ${topScore[0]+1} with score: ${topScore[1]}`);
+    // console.log(`Top Score before if statement: top scorer = Player ${topScore[0]+1} with score: ${topScore[1]}`);
     if (players[player].total > topScore[1]) {
-        try {
-            if (topScore[0] !== ""){
-                // console.log(`Previous top scorer: #player${topScore[0]+1}`);
-                const oldTopScorer = document.querySelector(`#player${topScore[0]+1}`);
-                oldTopScorer.classList.toggle('topScorer');
-            }
-        } catch {
-            console.log(" ");
-        } finally {
-            
-            const newTopScorer = document.querySelector(`#player${player+1}`);
-            newTopScorer.classList.toggle('topScorer');
-            topScore = [player, players[player].total];
-            
-            console.log(`New top score: Player${topScore[0]+1} with score: ${topScore[1]}`);
+        
+        if (topScore[0] !== ""){
+            // console.log(`Previous top scorer: #player${topScore[0]+1}`);
+            const oldTopScorer = document.querySelector(`#player${topScore[0]+1}`);
+            oldTopScorer.classList.toggle('topScorer');
         }
-
+        
+        const newTopScorer = document.querySelector(`#player${player+1}`);
+        newTopScorer.classList.toggle('topScorer');
+        topScore = [player, players[player].total];
+            
+        // console.log(`New top score: Player${topScore[0]+1} with score: ${topScore[1]}`);
+  
     }
 }
 
