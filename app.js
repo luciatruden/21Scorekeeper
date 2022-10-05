@@ -42,17 +42,39 @@ const createPlayers = function(num) {
         newPlayerTotal.id = `player${i}Total`;
         newPlayerTotal.classList.add('playerTotal');
 
+        //Player name label
+        const newPlayerName = document.createElement('div');
+        newPlayerName.innerText = `Player ${i}`;
+        newPlayerName.id = `player${i}Btn`;
+        newPlayerName.classList.add('playerButton');
+
         //Player's game limit
         const newPlayerLimit = document.createElement('div');
         newPlayerLimit.innerText = `Playing to 21`;
         newPlayerLimit.id = `player${i}Limit`;
         newPlayerLimit.classList.add('playerLimit');
 
-        //Player button to the UI
-        const newPlayerBtn = document.createElement('div');
-        newPlayerBtn.innerText = `Player ${i}`;
-        newPlayerBtn.id = `player${i}Btn`;
-        newPlayerBtn.classList.add('playerButton');
+        //Button to score points
+        const scoreBtn = document.createElement('div');
+        scoreBtn.innerText = "+ score";
+        scoreBtn.id = `player${i}ScoreBtn`;
+        scoreBtn.classList.add('scoreBtn');
+
+        //Button to miss turn
+        const missBtn = document.createElement('div');
+        missBtn.innerText = "miss";
+        missBtn.id = `player${i}MissBtn`;
+        missBtn.classList.add('missBtn');
+
+        //Div to hold buttons
+        const newPlayerBtns = document.createElement('div');
+        newPlayerBtns.classList.add('btns');
+        newPlayerBtns.id = `player${i}Btns`;
+
+        //Append buttons to its div
+        newPlayerBtns.appendChild(scoreBtn);
+        newPlayerBtns.appendChild(missBtn);
+        
 
         //Div to hold all player elements
         const newPlayerDiv = document.createElement('div');
@@ -61,10 +83,14 @@ const createPlayers = function(num) {
         newPlayerDiv.classList.add('topScorer');
         newPlayerDiv.classList.toggle('topScorer');
 
-        //Append new elements to document
+        //Append player elements to player div
         newPlayerDiv.appendChild(newPlayerTotal);
+        newPlayerDiv.appendChild(newPlayerName);
         newPlayerDiv.appendChild(newPlayerLimit);
-        newPlayerDiv.appendChild(newPlayerBtn);
+        newPlayerDiv.appendChild(newPlayerBtns);
+
+
+        
 
         gameButtons.appendChild(newPlayerDiv);
 

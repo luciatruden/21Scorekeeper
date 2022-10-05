@@ -50,3 +50,16 @@ body {
 .playerLimit {
     font-size: 0.7rem;
 }
+
+.scoreBtn {
+    background-color: green;
+}
+
+.missBtn {
+    background-color: gray;
+}
+
+.btns {
+    display: flex;
+    flex-direction: row;
+}
