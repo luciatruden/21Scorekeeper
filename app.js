@@ -2,6 +2,7 @@
 //initialise game variables
 const players = [];
 let numOfPlayers = 2;
+let topScore = ["", 0];
 
 // const gameStatus = document.querySelector('#currentScore');
 const currentPlayerDiv = document.querySelector('#currentPlayer');
@@ -18,6 +19,9 @@ const createPlayers = function(num) {
         gameButtons.removeChild(gameButtons.lastElementChild);
 
     }
+
+    //clear Top Score from previous game
+    topScore = ["", 0];
 
     //Add players
     for (let i = 1; i <= numOfPlayers; i++){
@@ -53,6 +57,8 @@ const createPlayers = function(num) {
         const newPlayerDiv = document.createElement('div');
         newPlayerDiv.id = `player${i}`;
         newPlayerDiv.classList.add('playerDiv');
+        newPlayerDiv.classList.add('topScorer');
+        newPlayerDiv.classList.toggle('topScorer');
 
         //Append new elements to document
         newPlayerDiv.appendChild(newPlayerTotal);
@@ -68,7 +74,7 @@ const createPlayers = function(num) {
 
     }
 
-    console.log(`Number of players: ${numOfPlayers}`);
+    // console.log(`Number of players: ${numOfPlayers}`);
     // console.log(players);
     
 }
@@ -78,28 +84,25 @@ const createPlayers = function(num) {
 //Function to increase a player's score
 //the first time they score during a turn they get 2 points,
 //after that it's one point per score
-const addScore = function (player) {
-    // console.log(`add score to player: ${player}`)
-    
+const addScore = function (player) { 
 
     if (players[player].scores === 2){
         players[player].total += 2;
         players[player].scores = 1;
 
-        console.log(players);
-        //set the previous player's "scores" back to 2
-        console.log(`previous: ${(player + (numOfPlayers -1))% numOfPlayers}, current: ${player}, next: ${(player + 1)%numOfPlayers}`);
-        
+        //set the previous player's "scores" back to 2   
         players[(player + (numOfPlayers -1))% numOfPlayers].scores = 2;
 
         //change the current player label
-        console.log(`Playing now: ${players[player].name}`);
         currentPlayerDiv.innerText = `Playing now: ${players[player].name}`;
+
     } else {
         players[player].total += 1;
     }
     
-    //Update the status
+    console.log(`${players[player].name} has total of ${players[player].total}`)
+
+    //Update the player's total
     const playerTotal = document.querySelector(`#player${player+1}Total`);
     playerTotal.innerText = players[player].total;
 
@@ -112,6 +115,28 @@ const addScore = function (player) {
         players[player].limit +=10;
         const gameLimitDiv = document.querySelector(`#player${player+1}Limit`);
         gameLimitDiv.innerText = `Playing to ${players[player].limit}`;
+    }
+
+    //Update top score if necessary
+    console.log(`Top Score before if statement: top scorer = Player ${topScore[0]+1} with score: ${topScore[1]}`);
+    if (players[player].total > topScore[1]) {
+        try {
+            if (topScore[0] !== ""){
+                // console.log(`Previous top scorer: #player${topScore[0]+1}`);
+                const oldTopScorer = document.querySelector(`#player${topScore[0]+1}`);
+                oldTopScorer.classList.toggle('topScorer');
+            }
+        } catch {
+            console.log(" ");
+        } finally {
+            
+            const newTopScorer = document.querySelector(`#player${player+1}`);
+            newTopScorer.classList.toggle('topScorer');
+            topScore = [player, players[player].total];
+            
+            console.log(`New top score: Player${topScore[0]+1} with score: ${topScore[1]}`);
+        }
+
     }
 }
 
