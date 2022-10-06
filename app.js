@@ -55,6 +55,7 @@ const createPlayers = function(num) {
         newPlayerName.innerText = `Player ${i}`;
         newPlayerName.id = `player${i}Btn`;
         newPlayerName.classList.add('playerName');
+        newPlayerName.contentEditable = true;
 
         //Player's game limit
         const newPlayerLimit = document.createElement('div');
