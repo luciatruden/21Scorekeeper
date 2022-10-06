@@ -1,5 +1,5 @@
 body {
-    background-color: blue;
+    background-color: #f6fff8;
     display: flex;
     justify-content: center;
     margin-top: 150px;
@@ -9,7 +9,8 @@ body {
 }
 
 #scoreKeeper {
-    background-color: aqua;
+    border: #a4c3b2 solid 1px;
+    background-color: #eaf4f4;
     padding: 20px;
     border-radius: 20px;
 
@@ -20,6 +21,7 @@ body {
 
 #gameTitle {
     font-size: 2.25rem;
+    color: #6b9080;
 }
 
 #numPlayersDiv {
@@ -45,7 +47,7 @@ body {
 
 /* Div to hold all player elements */
 .playerDiv {
-    background-color: antiquewhite;
+    background-color: #a4c3b2;
     display: flex;
     flex-direction: row;
     margin: 10px;
@@ -65,7 +67,7 @@ body {
     align-items: center;
     justify-content: space-between;
 
-    background-color: rgb(223, 221, 221);
+    background-color: #cce3de;
 
     border-radius: 10px 0 0 10px;
 }
@@ -124,7 +126,7 @@ body {
 
 /* Toggled on/off to highlight current top scorer */
 .topScorer {
-    background-color: blueviolet;
+    background-color: #6b9080;
 }
 
 .topScorer .playerTotal{
