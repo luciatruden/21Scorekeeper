@@ -4,6 +4,7 @@ body {
     justify-content: center;
     margin-top: 150px;
     font-family: sans-serif;
+    box-sizing: border-box;
     
 }
 
@@ -71,6 +72,7 @@ body {
 
 .playerTotal {
     font-size: 2.5rem;
+    text-align: center;
 }
 
 /* Other info holds the player's name and the limit they are playing towards */
@@ -94,13 +96,18 @@ body {
 .playerButtons {
     display: flex;
     flex-direction: column;
+    justify-content: stretch;
 }
 
 .scoreButton {
     font-size: 1.5rem;
     color: white;
-    padding: 3px;
+    padding: 7px;
     border-radius: 0 10px 10px 0;
+    flex: 1;
+
+    display: flex;
+    align-items: center;
 }
 
 .score1Button {
@@ -115,7 +122,14 @@ body {
     background-color: purple;
 }
 
+/* Toggled on/off to highlight current top scorer */
+.topScorer {
+    background-color: blueviolet;
+}
 
+.topScorer .playerTotal{
+    font-size: 3.5rem;
+}
 
 
 
@@ -129,12 +143,27 @@ body {
         flex-direction: column;
     }
 
+    .playerDiv {
+        justify-content: stretch;
+    }
+
     .playerData {
         flex-direction: row;
     }
 
+    .playerTotal {
+        width: 50px;
+    }
+
     .playerButtons {
         flex-direction: row;
+        align-items: stretch;
+        
+        text-align: center;
+
+        justify-self: center;
+
+        
     }
 
 }
