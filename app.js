@@ -80,18 +80,21 @@ const createPlayers = function(num) {
         score1Button.innerText = "+1";
         score1Button.id = `player${i}Score1Button`;
         score1Button.classList.add('score1Button');
+        score1Button.classList.add('scoreButton');
 
         //Button to score 2 points
         const score2Button = document.createElement('div');
         score2Button.innerText = "+2";
         score2Button.id = `player${i}Score2Button`;
         score2Button.classList.add('score2Button');
+        score2Button.classList.add('scoreButton');``
 
         //Button to score 3 points
         const score3Button = document.createElement('div');
         score3Button.innerText = "+3";
         score3Button.id = `player${i}Score3Button`;
         score3Button.classList.add('score3Button');
+        score3Button.classList.add('scoreButton');
 
         //append score buttons to their div
         newPlayerButtons.appendChild(score1Button);
@@ -113,9 +116,15 @@ const createPlayers = function(num) {
         //Append player div to parent elemtent gameButtons
         gameButtons.appendChild(newPlayerDiv);
 
-        //Add event listener for each player
-        newPlayerDiv.addEventListener('click', function(e){
-            addScore((i-1)%numOfPlayers);
+        //Add event listener for each button
+        score1Button.addEventListener('click', function(e){
+            addScore((i-1)%numOfPlayers, 1);
+        })
+        score2Button.addEventListener('click', function(e){
+            addScore((i-1)%numOfPlayers, 2);
+        })
+        score3Button.addEventListener('click', function(e){
+            addScore((i-1)%numOfPlayers, 3);
         })
 
     }

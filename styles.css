@@ -36,6 +36,9 @@ body {
     background-color: antiquewhite;
     display: flex;
     flex-direction: row;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 /* Toggled on/off to highlight current top scorer */
@@ -47,6 +50,10 @@ body {
 .playerData {
     display: flex;
     flex-direction: column;
+
+    background-color: rgb(223, 221, 221);
+
+    border-radius: 10px 0 0 10px;
 }
 
 .playerTotal {
@@ -60,11 +67,18 @@ body {
 }
 
 .playerName {
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
 }
 
 .playerLimit {
     font-size: 0.7rem;
+}
+
+.scoreButton {
+    font-size: 1.5rem;
+    color: white;
+    padding: 3px;
+    border-radius: 0 10px 10px 0;
 }
 
 .score1Button {
