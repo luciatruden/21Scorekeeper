@@ -133,6 +133,18 @@ body {
     font-size: 3.5rem;
 }
 
+.winner {
+    background-color: red;
+}
+
+#resetButton {
+    background-color: #6b9080;
+    color: #eaf4f4;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
 
 
 @media(max-width: 500px){

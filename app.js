@@ -5,10 +5,7 @@ let numOfPlayers = 2;
 let topScore = ["", 0];
 let previousPlayer;
 
-// const gameStatus = document.querySelector('#currentScore');
-const currentPlayerDiv = document.querySelector('#currentPlayer');
-
-//Funtion to set the number of players
+//Funtion to set the number of players and generate display
 const createPlayers = function(num) {
     numOfPlayers = num;
     const gameButtons = document.querySelector('#gameButtons');
@@ -109,6 +106,8 @@ const createPlayers = function(num) {
         newPlayerDiv.classList.add('playerDiv');
         newPlayerDiv.classList.add('topScorer');
         newPlayerDiv.classList.toggle('topScorer');
+        newPlayerDiv.classList.add('winner');
+        newPlayerDiv.classList.toggle('winner');
 
         //Append player elements (data and buttons) to player div
         newPlayerDiv.appendChild(newPlayerData);
@@ -136,36 +135,36 @@ const createPlayers = function(num) {
 //Function to increase a player's score
 const addScore = function (player, score) { 
 
-    //change the current player label
-    // currentPlayerDiv.innerText = `Playing now: ${players[player].name}`;
-
     //Update previousPlayer
     previousPlayer = player;
 
-    //increase player's score
+    //Increase player's score
     players[player].total += score;
 
     //Update the player's total in UI
     const playerTotal = document.querySelector(`#player${player+1}Total`);
     playerTotal.innerText = players[player].total;
 
-    //Check if game is over or if limit has changed
+    //Check if player won or if their game limit has changed
     if (players[player].total === players[player].limit){
-        //Player has won game
-        console.log(`${players[player].name} has won the match.`)
+        
+        //Player has won game: toggle winner class on
+        const newWinner = document.querySelector(`#player${player+1}`);
+        newWinner.classList.toggle('winner');
+        
     } else if (players[player].total > players[player].limit){
-        //move limit and change display
+        
+        //Player has overpassed limit: move limit and change display
         players[player].limit +=10;
         const gameLimitDiv = document.querySelector(`#player${player+1}Limit`);
         gameLimitDiv.innerText = `Playing to ${players[player].limit}`;
     }
 
     //Update top score if necessary
-    // console.log(`Top Score before if statement: top scorer = Player ${topScore[0]+1} with score: ${topScore[1]}`);
     if (players[player].total > topScore[1]) {
         
         if (topScore[0] !== ""){
-            // console.log(`Previous top scorer: #player${topScore[0]+1}`);
+            
             const oldTopScorer = document.querySelector(`#player${topScore[0]+1}`);
             oldTopScorer.classList.toggle('topScorer');
         }
@@ -173,28 +172,14 @@ const addScore = function (player, score) {
         const newTopScorer = document.querySelector(`#player${player+1}`);
         newTopScorer.classList.toggle('topScorer');
         topScore = [player, players[player].total];
-            
-        // console.log(`New top score: Player${topScore[0]+1} with score: ${topScore[1]}`);
   
     }
 }
 
-createPlayers(numOfPlayers);
-
-// const player1Btn = document.querySelector('#player1Btn');
-// player1Btn.addEventListener('click', function(e){
-//     addScore(0);
-// })
-
-// const player2Btn = document.querySelector('#player2Btn');
-// player2Btn.addEventListener('click', function(e){
-//     addScore(1);
-// })
-
-// const resetBtn = document.querySelector('#resetBtn');
-// resetBtn.addEventListener('click', function (e){
-//     window.location.reload();
-// })
+const resetButton = document.querySelector('#resetButton');
+resetButton.addEventListener('click', function (e){
+    window.location.reload();
+})
 
 const numPlayersSelect = document.querySelector('#numPlayers');
 numPlayersSelect.addEventListener('change', function (e) {
@@ -202,5 +187,6 @@ numPlayersSelect.addEventListener('change', function (e) {
     createPlayers(e.target.value);
 })
 
+createPlayers(numOfPlayers);
 
 
