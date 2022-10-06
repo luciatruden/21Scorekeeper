@@ -137,7 +137,7 @@ const createPlayers = function(num) {
 const addScore = function (player, score) { 
 
     //change the current player label
-    currentPlayerDiv.innerText = `Playing now: ${players[player].name}`;
+    // currentPlayerDiv.innerText = `Playing now: ${players[player].name}`;
 
     //Update previousPlayer
     previousPlayer = player;
