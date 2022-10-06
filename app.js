@@ -3,19 +3,18 @@
 const players = [];
 let numOfPlayers = 2;
 let topScore = ["", 0];
-let previousPlayer;
 
-//Funtion to set the number of players and generate display
+//Function to set the number of players and generate display
 const createPlayers = function(num) {
+    
     numOfPlayers = num;
     const gameButtons = document.querySelector('#gameButtons');
 
     //Empty array AND clear all buttons first
     while (players.length > 0) {
+        
         players.pop();
-
         gameButtons.removeChild(gameButtons.lastElementChild);
-
     }
 
     //clear Top Score from previous game
@@ -28,10 +27,11 @@ const createPlayers = function(num) {
         let newPlayer = { 
             name: `Player ${i}`,
             total: 0,
-            //scores: 2, 
             limit: 21
         }
         players.push(newPlayer);
+
+        //GENERATE UI ELEMENTS:
 
         //Player data (holds total score and other info div)
         const newPlayerData = document.createElement('div');
@@ -113,7 +113,7 @@ const createPlayers = function(num) {
         newPlayerDiv.appendChild(newPlayerData);
         newPlayerDiv.appendChild(newPlayerButtons);
           
-        //Append player div to parent elemtent gameButtons
+        //Append player div to parent element gameButtons
         gameButtons.appendChild(newPlayerDiv);
 
         //Add event listener for each button
@@ -131,12 +131,8 @@ const createPlayers = function(num) {
     
 }
 
-
 //Function to increase a player's score
 const addScore = function (player, score) { 
-
-    //Update previousPlayer
-    previousPlayer = player;
 
     //Increase player's score
     players[player].total += score;
@@ -170,23 +166,28 @@ const addScore = function (player, score) {
     if (players[player].total > topScore[1]) {
         
         if (topScore[0] !== ""){
-            
+            //toggle OFF topScorer class for previous player to hold top score
             const oldTopScorer = document.querySelector(`#player${topScore[0]+1}`);
             oldTopScorer.classList.toggle('topScorer');
         }
         
+        //toggle ON topScorer class for player holding new top score
         const newTopScorer = document.querySelector(`#player${player+1}`);
         newTopScorer.classList.toggle('topScorer');
+
+        //Update topScore with new data
         topScore = [player, players[player].total];
   
     }
 }
 
+//Reset button to reload window
 const resetButton = document.querySelector('#resetButton');
 resetButton.addEventListener('click', function (e){
     window.location.reload();
 })
 
+//Regenerate display if user choosing a different number of players
 const numPlayersSelect = document.querySelector('#numPlayers');
 numPlayersSelect.addEventListener('change', function (e) {
     
