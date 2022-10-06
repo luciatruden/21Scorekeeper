@@ -50,7 +50,7 @@ const createPlayers = function(num) {
         //Player name label
         const newPlayerName = document.createElement('div');
         newPlayerName.innerText = `Player ${i}`;
-        newPlayerName.id = `player${i}Btn`;
+        newPlayerName.id = `player${i}Name`;
         newPlayerName.classList.add('playerName');
         newPlayerName.contentEditable = true;
 
@@ -151,6 +151,12 @@ const addScore = function (player, score) {
         //Player has won game: toggle winner class on
         const newWinner = document.querySelector(`#player${player+1}`);
         newWinner.classList.toggle('winner');
+
+        //Display winner message with player's name
+        const winnerDiv = document.querySelector('#gameEndMessage');
+        const winnerName = document.querySelector(`#player${player+1}Name`).textContent;
+        winnerDiv.innerText = `Well done ${winnerName}!!!`;
+
         
     } else if (players[player].total > players[player].limit){
         

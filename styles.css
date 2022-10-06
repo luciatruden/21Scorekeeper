@@ -137,6 +137,12 @@ body {
     background-color: red;
 }
 
+#gameEndMessage {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
 #resetButton {
     background-color: #6b9080;
     color: #eaf4f4;
