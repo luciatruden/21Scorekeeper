@@ -133,31 +133,18 @@ const createPlayers = function(num) {
 
 
 //Function to increase a player's score
-//the first time they score during a turn they get 2 points,
-//after that it's one point per score
-const addScore = function (player) { 
+const addScore = function (player, score) { 
 
-    //if (players[player].scores === 2){
-    if ( player !== previousPlayer) {
-        players[player].total += 2;
-        //players[player].scores = 1;
+    //change the current player label
+    currentPlayerDiv.innerText = `Playing now: ${players[player].name}`;
 
-        //set the previous player's "scores" back to 2   
-        //players[(player + (numOfPlayers -1))% numOfPlayers].scores = 2;
+    //Update previousPlayer
+    previousPlayer = player;
 
-        //change the current player label
-        currentPlayerDiv.innerText = `Playing now: ${players[player].name}`;
+    //increase player's score
+    players[player].total += score;
 
-        //Update previousPlayer
-        previousPlayer = player;
-
-    } else {
-        players[player].total += 1;
-    }
-    
-    console.log(`${players[player].name} has total of ${players[player].total}`)
-
-    //Update the player's total
+    //Update the player's total in UI
     const playerTotal = document.querySelector(`#player${player+1}Total`);
     playerTotal.innerText = players[player].total;
 
