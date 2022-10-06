@@ -31,35 +31,57 @@ body {
     margin-top: 50px;
 }
 
+/* Div to hold all player elements */
 .playerDiv {
     background-color: antiquewhite;
+    display: flex;
+    flex-direction: row;
 }
 
+/* Toggled on/off to highlight current top scorer */
 .topScorer {
     background-color: blueviolet;
 }
 
-.playerButton {
-    background-color: aliceblue;
+/* Div to hold player total and other info */
+.playerData {
+    display: flex;
+    flex-direction: column;
 }
 
 .playerTotal {
     font-size: 2rem;
 }
 
+/* Other info holds the player's name and the limit they are playing towards */
+.playerOtherInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.playerName {
+    background-color: aliceblue;
+}
+
 .playerLimit {
     font-size: 0.7rem;
 }
 
-.scoreBtn {
+.score1Button {
+    background-color: orange
+}
+
+.score2Button {
     background-color: green;
 }
 
-.missBtn {
-    background-color: gray;
+.score3Button {
+    background-color: purple;
 }
 
-.btns {
+
+
+.playerButtons {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }

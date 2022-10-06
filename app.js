@@ -36,17 +36,25 @@ const createPlayers = function(num) {
         }
         players.push(newPlayer);
 
+        //Player data (holds total score and other info div)
+        const newPlayerData = document.createElement('div');
+        newPlayerData.classList.add('playerData');
+
         //Player's total score
         const newPlayerTotal = document.createElement('div');
         newPlayerTotal.innerText = 0;
         newPlayerTotal.id = `player${i}Total`;
         newPlayerTotal.classList.add('playerTotal');
 
+        //Player other info (holds name and limit)
+        const newPlayerOtherInfo = document.createElement('div');
+        newPlayerOtherInfo.classList.add('playerOtherInfo');
+
         //Player name label
         const newPlayerName = document.createElement('div');
         newPlayerName.innerText = `Player ${i}`;
         newPlayerName.id = `player${i}Btn`;
-        newPlayerName.classList.add('playerButton');
+        newPlayerName.classList.add('playerName');
 
         //Player's game limit
         const newPlayerLimit = document.createElement('div');
@@ -54,27 +62,42 @@ const createPlayers = function(num) {
         newPlayerLimit.id = `player${i}Limit`;
         newPlayerLimit.classList.add('playerLimit');
 
-        //Button to score points
-        const scoreBtn = document.createElement('div');
-        scoreBtn.innerText = "+ score";
-        scoreBtn.id = `player${i}ScoreBtn`;
-        scoreBtn.classList.add('scoreBtn');
+        //append name and limit elements to other info div
+        newPlayerOtherInfo.appendChild(newPlayerName);
+        newPlayerOtherInfo.appendChild(newPlayerLimit);
 
-        //Button to miss turn
-        const missBtn = document.createElement('div');
-        missBtn.innerText = "miss";
-        missBtn.id = `player${i}MissBtn`;
-        missBtn.classList.add('missBtn');
+        //append total and other info to player data
+        newPlayerData.appendChild(newPlayerTotal);
+        newPlayerData.appendChild(newPlayerOtherInfo);
 
         //Div to hold buttons
-        const newPlayerBtns = document.createElement('div');
-        newPlayerBtns.classList.add('btns');
-        newPlayerBtns.id = `player${i}Btns`;
+        const newPlayerButtons = document.createElement('div');
+        newPlayerButtons.classList.add('playerButtons');
+        newPlayerButtons.id = `player${i}Buttons`;
 
-        //Append buttons to its div
-        newPlayerBtns.appendChild(scoreBtn);
-        newPlayerBtns.appendChild(missBtn);
-        
+        //Button to score 1 point
+        const score1Button = document.createElement('div');
+        score1Button.innerText = "+1";
+        score1Button.id = `player${i}Score1Button`;
+        score1Button.classList.add('score1Button');
+
+        //Button to score 2 points
+        const score2Button = document.createElement('div');
+        score2Button.innerText = "+2";
+        score2Button.id = `player${i}Score2Button`;
+        score2Button.classList.add('score2Button');
+
+        //Button to score 3 points
+        const score3Button = document.createElement('div');
+        score3Button.innerText = "+3";
+        score3Button.id = `player${i}Score3Button`;
+        score3Button.classList.add('score3Button');
+
+        //append score buttons to their div
+        newPlayerButtons.appendChild(score1Button);
+        newPlayerButtons.appendChild(score2Button);
+        newPlayerButtons.appendChild(score3Button);
+          
 
         //Div to hold all player elements
         const newPlayerDiv = document.createElement('div');
@@ -83,15 +106,11 @@ const createPlayers = function(num) {
         newPlayerDiv.classList.add('topScorer');
         newPlayerDiv.classList.toggle('topScorer');
 
-        //Append player elements to player div
-        newPlayerDiv.appendChild(newPlayerTotal);
-        newPlayerDiv.appendChild(newPlayerName);
-        newPlayerDiv.appendChild(newPlayerLimit);
-        newPlayerDiv.appendChild(newPlayerBtns);
-
-
-        
-
+        //Append player elements (data and buttons) to player div
+        newPlayerDiv.appendChild(newPlayerData);
+        newPlayerDiv.appendChild(newPlayerButtons);
+          
+        //Append player div to parent elemtent gameButtons
         gameButtons.appendChild(newPlayerDiv);
 
         //Add event listener for each player
